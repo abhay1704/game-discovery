@@ -1,0 +1,20 @@
+#header {
+  color: white;
+}
+
+.icon {
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
+  margin-right: 1rem;
+  width: 3rem;
+  border-radius: 10px;
+}
+
+.theme-toggler {
+  min-width: 10rem;
+}
+
+#header input:focus-visible && #header .chakra-icon {
+  color: var(--gray-dark) !important;
+}

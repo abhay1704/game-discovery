@@ -1,0 +1,70 @@
+#games {
+  flex-basis: fit-content;
+  flex-grow: 5;
+  width: 85%;
+  text-align: left;
+}
+
+#games {
+  text-align: left;
+  h2 {
+    font-size: 3.5rem;
+  }
+}
+
+.nav-btns {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.btn-nav {
+  background-color: var(--gray-dark);
+  border: 1px solid var(--gray-dark);
+  color: white;
+  font-size: 1rem;
+  margin: 0 1rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  position: relative;
+}
+
+.btn-nav:hover {
+  background-color: var(--gray-light);
+  color: var(--gray-dark);
+}
+
+#prev {
+  padding-left: 40px;
+}
+
+#prev::before {
+  content: "❮";
+  width: 50px;
+  left: 0;
+  position: absolute;
+  height: 100%;
+}
+
+#next {
+  padding-right: 40px;
+}
+
+#next::after {
+  content: "❯";
+  width: 50px;
+  right: 0;
+  position: absolute;
+  height: 100%;
+}
+
+#prev:active {
+  transform: translateX(-5px);
+}
+#next:active {
+  transform: translateX(5px);
+}

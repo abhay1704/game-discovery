@@ -1,0 +1,5 @@
+#game-list {
+  margin-top: 1.3rem;
+  display: flex;
+  flex-wrap: wrap;
+}
