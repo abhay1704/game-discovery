@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
 import "./sorter.css";
 import { useLoadPage } from "./useLoadPage";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 // TODO: Implement the Sorter component
 // Animate the dropdown options when they appear
 
 const Sorter = () => {
   const loadPage = useLoadPage();
-  const dispatch = useDispatch();
   const platform = useSelector((state) => state.platform);
 
   const toggleOptions = (e) => {

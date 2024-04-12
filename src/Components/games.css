@@ -7,11 +7,11 @@
 
 #games {
   text-align: left;
-  h2 {
-    font-size: 3.5rem;
-  }
 }
 
+#games h2 {
+  font-size: 3.5rem;
+}
 .nav-btns {
   width: 100%;
   display: flex;
@@ -69,13 +69,13 @@
   transform: translateX(5px);
 }
 
-.chakra-ui-light{
+.chakra-ui-light {
   .btn-nav {
-    background-color: #40513B;
+    background-color: #40513b;
   }
 
-  .btn-nav:hover{
-    color:white;
+  .btn-nav:hover {
+    color: white;
     background-color: #5f7b57;
   }
 }
