@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./games.css";
 import Sorter from "./Sorter";
 import GameList from "./GameList";
 import Game from "./Game";
-import { getGames, controller } from "../services";
+import { controller } from "../services";
 import { capitalize } from "../utils";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useLoadPage } from "./useLoadPage";
 
 const Games = () => {
-  const dispatch = useDispatch();
   const games = useSelector((state) => state.currResults);
   const isLoading = useSelector((state) => state.isLoading);
   const error = useSelector((state) => state.error);
@@ -30,6 +29,13 @@ const Games = () => {
     };
   }, []);
 
+  if (error)
+    return (
+      <div className="error">
+        <h2>Oops! Something went wrong</h2>
+        <p>{error}</p>
+      </div>
+    );
 
   return (
     <div id="games">

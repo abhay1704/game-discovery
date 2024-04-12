@@ -12,7 +12,7 @@
   --green: #38a169;
   --light-primary: green;
   --light-secondary: #98abee;
-  --light-background: #EDF1D6;
+  --light-background: #edf1d6;
 }
 
 html {
@@ -95,4 +95,10 @@ body {
   to {
     transform: rotate(360deg);
   }
+}
+
+.error {
+  color: red;
+  font-size: 1.2rem;
+  margin: 10px 0;
 }

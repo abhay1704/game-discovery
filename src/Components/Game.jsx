@@ -52,7 +52,7 @@ const Game = ({ name, genres, releaseDate, rating, platforms, image }) => {
       observer1.disconnect();
       observer2.disconnect();
     };
-  }, []);
+  }, [image]);
 
   return (
     <React.Fragment>
