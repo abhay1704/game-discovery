@@ -1,4 +1,5 @@
 export const capitalize = (param) => {
+  if(param === '')  return '';
   return (
     param
       ?.replace("-", " ")

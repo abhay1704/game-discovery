@@ -18,7 +18,6 @@ li div {
 #sort-list li {
   position: relative;
   margin-right: 10px;
-  background-color: var(--gray-dark);
   padding: 10px;
   padding-left: 15px;
   width: 220px;
@@ -26,15 +25,6 @@ li div {
   border-radius: 5px;
   cursor: pointer;
   z-index: 5;
-}
-
-#select li:hover {
-  background-color: var(--gray-light);
-  cursor: pointer;
-}
-
-.selected {
-  background-color: var(--gray-light);
 }
 
 .selected::before {
@@ -48,6 +38,44 @@ li div {
   /* border: solid 1px red; */
   padding-right: 5px;
   cursor: pointer;
+}
+
+.chakra-ui-light {
+  #sort-list li {
+    background-color: #9DC08B;
+  }
+
+  #select li:hover {
+    background-color: var(--gray-light);
+    cursor: pointer;
+  }
+
+  .selected {
+    background-color: var(--gray-light);
+  }
+
+  li.option:hover::after {
+    background-color: #ffffff4a;
+  }
+}
+
+.chakra-ui-dark {
+  #sort-list li {
+    background-color: var(--gray-dark);
+  }
+
+  #select li:hover {
+    background-color: var(--gray-light);
+    cursor: pointer;
+  }
+
+  .selected {
+    background-color: var(--gray-light);
+  }
+
+  li.option:hover::after {
+    background-color: #ffffff4a;
+  }
 }
 
 .hide {
@@ -78,6 +106,5 @@ li.option:hover::after {
   position: absolute;
   inset: 0;
   padding-right: 0.3rem;
-  background-color: #ffffff4a;
   cursor: pointer;
 }

@@ -18,7 +18,6 @@ const Games = () => {
   const currentQuery = useSelector((state) => state.currentQuery);
   const loadPage = useLoadPage();
 
-
   const navPage = (e) => {
     const url = e.target.getAttribute("dataurl");
     loadPage({ url: url });
@@ -30,6 +29,7 @@ const Games = () => {
       controller.abort();
     };
   }, []);
+
 
   return (
     <div id="games">

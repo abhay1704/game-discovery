@@ -5,6 +5,8 @@ import { toggle } from "../utils";
 export function useLoadPage() {
   const dispatch = useDispatch();
   const platform = useSelector((state) => state.platform);
+  const genre = useSelector((state) => state.currentGenres);
+  const searchQuery = useSelector((state) => state.searchQuery);
 
   const loadPage = (query) => {
     dispatch({ type: "LOADING", payload: { isLoading: true } });
@@ -14,9 +16,14 @@ export function useLoadPage() {
         type: "TOGGLE_PLATFORM",
         payload: { platform: query.currPlatform },
       });
+      query.platform = toggle(platform, query.currPlatform);
     }
 
-    query.platform = toggle(platform, query.currPlatform);
+    if (!query.page_no) query.page_no = 1;
+    if (!query.platform) query.platform = platform;
+    if (!query.sort) query.sort = "rating";
+    if (!query.genre) query.genre = genre;
+    if (!query.query) query.query = searchQuery;
 
     getGames(query)
       .then((data) => {

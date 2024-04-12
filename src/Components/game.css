@@ -7,6 +7,9 @@
   padding: 0;
   border-radius: 10px;
 
+  transform: translateX(80%);
+  transition: transform 0.1s;
+
   .image {
     border-radius: 10px 10px 0 0;
     width: 100%;

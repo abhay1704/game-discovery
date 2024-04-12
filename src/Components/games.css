@@ -68,3 +68,14 @@
 #next:active {
   transform: translateX(5px);
 }
+
+.chakra-ui-light{
+  .btn-nav {
+    background-color: #40513B;
+  }
+
+  .btn-nav:hover{
+    color:white;
+    background-color: #5f7b57;
+  }
+}

@@ -1,25 +1,25 @@
-
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-
-:root{
-  --gray-light:#718096;
-  --black:rgba(0, 0, 0, 0.92)
-  --white:rgba(255, 255, 255, 0.92);
-  --gray-dark:#2D3748;
-  --green:#38A169;
+:root {
+  --gray-light: #718096;
+  --black: rgb(16, 16, 16);
+  --white: rgba(255, 255, 255, 0.92);
+  --gray-dark: #2d3748;
+  --green: #38a169;
+  --light-primary: green;
+  --light-secondary: #98abee;
+  --light-background: #EDF1D6;
 }
 
-
-html{
+html {
   height: 100%;
 }
 
-body{
+body {
   height: 100%;
   max-width: 100%;
   margin: 0;
@@ -27,12 +27,49 @@ body{
   overflow-x: hidden;
 }
 
+.chakra-ui-light {
+  background-color: var(--light-background);
+  color: var(--black);
+
+  h1,
+  h2,
+  h3 {
+    color: var(--light-primary);
+  }
+
+  svg {
+    color: var(--light-primary);
+  }
+
+  input {
+    background-color: white;
+    color: var(--black);
+    background-color: rgba(58, 56, 56, 0.143);
+  }
+
+  input:focus-visible {
+    border: solid 2px green !important;
+    box-shadow: none;
+  }
+
+  .theme-toggler {
+    color: black;
+  }
+}
+
+.chakra-ui-dark {
+  input {
+    background-color: var(--gray-dark);
+    color: white;
+    border: none;
+  }
+}
+
 #root {
   height: 100%;
 }
 
-
-.content{
+.content {
   display: flex;
   /* flex-direction: column; */
   height: 100%;

@@ -12,7 +12,7 @@ import React from "react";
 
 const Game = ({ name, genres, releaseDate, rating, platforms, image }) => {
   const style = {
-    border: "1px solid white",
+    border: "1px solid #40513B",
     padding: "0.2em",
     textAlign: "center",
     borderRadius: "5px",
@@ -23,28 +23,42 @@ const Game = ({ name, genres, releaseDate, rating, platforms, image }) => {
   const ref = useRef();
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    const observer1 = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          ref.current.style.backgroundImage = `url(${image})`;
-          observer.disconnect();
+          entry.target.querySelector(
+            ".image"
+          ).style.backgroundImage = `url(${image})`;
+          observer1.disconnect();
         }
       },
-      { root: null, rootMargin: "10%", threshold: 0.1 }
+      { root: null, rootMargin: "20%", threshold: 0 }
     );
 
-    observer.observe(ref.current);
+    const observer2 = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          entry.target.style.transform = "translateX(0)";
+          observer2.disconnect();
+        }
+      },
+      { root: null, threshold: 0.05 }
+    );
+
+    observer1.observe(ref.current);
+    observer2.observe(ref.current);
 
     return () => {
-      observer.disconnect();
+      observer1.disconnect();
+      observer2.disconnect();
     };
   }, []);
 
   return (
     <React.Fragment>
       {name && (
-        <div className="game">
-          <div className="image" dataurl={image} ref={ref}></div>
+        <div className="game" ref={ref}>
+          <div className="image" dataurl={image}></div>
           <div className="about">
             <div className="info-bar">
               <div className="icons">
@@ -58,7 +72,7 @@ const Game = ({ name, genres, releaseDate, rating, platforms, image }) => {
               <div className="number">92</div>
             </div>
             <h3>{name}</h3>
-            <p>Released : { releaseDate}</p>
+            <p>Released : {releaseDate}</p>
             <div className="Rating">
               <span style={style}>Rating</span>
               <span id="view-count">{rating}</span>
