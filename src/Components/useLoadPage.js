@@ -1,12 +1,23 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getGames } from "../services";
+import { toggle } from "../utils";
 
 export function useLoadPage() {
   const dispatch = useDispatch();
+  const platform = useSelector((state) => state.platform);
 
   const loadPage = (query) => {
-    console.log(query);
     dispatch({ type: "LOADING", payload: { isLoading: true } });
+
+    if (query.currPlatform) {
+      dispatch({
+        type: "TOGGLE_PLATFORM",
+        payload: { platform: query.currPlatform },
+      });
+    }
+
+    query.platform = toggle(platform, query.currPlatform);
+
     getGames(query)
       .then((data) => {
         dispatch({ type: "ERROR", payload: { setError: null } });
@@ -26,22 +37,16 @@ export function useLoadPage() {
             payload: { searchQuery: query.query },
           });
         }
-        if (query.genres) {
+        if (query.genre) {
           dispatch({
             type: "CHANGE_GENRES",
-            payload: { currentGenres: query.genres },
+            payload: { currentGenres: query.genre },
           });
         }
         if (query.sort) {
           dispatch({
             type: "SORT_QUERY",
             payload: { sortQuery: query.sort },
-          });
-        }
-        if (query.platform) {
-          dispatch({
-            type: "TOGGLE_PLATFORM",
-            payload: { platform: query.platform },
           });
         }
       })

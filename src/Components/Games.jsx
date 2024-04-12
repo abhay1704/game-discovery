@@ -6,6 +6,7 @@ import Game from "./Game";
 import { getGames, controller } from "../services";
 import { capitalize } from "../utils";
 import { useSelector, useDispatch } from "react-redux";
+import { useLoadPage } from "./useLoadPage";
 
 const Games = () => {
   const dispatch = useDispatch();
@@ -15,27 +16,8 @@ const Games = () => {
   const prev_url = useSelector((state) => state.prev);
   const next_url = useSelector((state) => state.next);
   const currentQuery = useSelector((state) => state.currentQuery);
+  const loadPage = useLoadPage();
 
-  const loadPage = (query) => {
-    dispatch({ type: "LOADING", payload: { isLoading: true } });
-    getGames(query)
-      .then((data) => {
-        dispatch({ type: "ERROR", payload: { setError: null } });
-        dispatch({
-          type: "SET_RESULTS",
-          payload: {
-            currentResults: data.results,
-            prev: data.prev_url,
-            next: data.next_url,
-            currentPage: query.page_no,
-          },
-        });
-      })
-      .catch((err) => dispatch({ type: "ERROR", payload: { setError: err } }))
-      .finally(() =>
-        dispatch({ type: "LOADING", payload: { isLoading: false } })
-      );
-  };
 
   const navPage = (e) => {
     const url = e.target.getAttribute("dataurl");

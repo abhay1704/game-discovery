@@ -13,13 +13,9 @@ import sports_image from "../assets/sports_game.png";
 import strategy_image from "../assets/strategy_game.png";
 // import free_online_image from "../assets/free_online_games.jpg";
 import { useDispatch } from "react-redux";
+import { useLoadPage } from "./useLoadPage";
 
 const listGenres = [
-  //   {
-  //     name: "Free Online Games",
-  //     imageSrc: free_online_image,
-  //     slug: "free-online",
-  //   },
   { name: "Action Games", imageSrc: action_image, slug: "action" },
   { name: "Adventure Games", imageSrc: adventure_image, slug: "adventure" },
   { name: "Casino Games", imageSrc: casino_image, slug: "card" },
@@ -37,40 +33,13 @@ const listGenres = [
 
 const Genres = () => {
   const dispatch = useDispatch();
+  const loadPage = useLoadPage();
 
-  const loadPage = (query) => {
-    dispatch({ type: "LOADING", payload: { isLoading: true } });
-    getGames(query)
-      .then((data) => {
-        dispatch({ type: "ERROR", payload: { setError: null } });
-        dispatch({
-          type: "SET_RESULTS",
-          payload: {
-            currentResults: data.results,
-            prev: data.prev_url,
-            next: data.next_url,
-            currentPage: query.page_no,
-          },
-        });
-
-        dispatch({
-          type: "CHANGE_GENRES",
-          payload: {
-            currentGenres: query.genre,
-          },
-        });
-      })
-      .catch((err) => dispatch({ type: "ERROR", payload: { setError: err } }))
-      .finally(() =>
-        dispatch({ type: "LOADING", payload: { isLoading: false } })
-      );
-  };
 
   const changeGenres = (e) => {
     const genre = e.target.closest("li");
     if (!genre) return;
     const genreName = genre.getAttribute("dataname");
-    console.log(genreName);
     loadPage({ page_no: 1, genre: genreName });
   };
 

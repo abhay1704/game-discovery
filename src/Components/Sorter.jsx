@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 const Sorter = () => {
   const loadPage = useLoadPage();
   const dispatch = useDispatch();
-  // const platform = useSelector((state) => state.platform);
+  const platform = useSelector((state) => state.platform);
 
   const toggleOptions = (e) => {
     const options = e.target
@@ -26,8 +26,6 @@ const Sorter = () => {
     if (e.target.classList.contains("selected")) return;
 
     const sortCriterion = e.target.getAttribute("value");
-    console.log(sortCriterion);
-    if (sortCriterion === "") return;
     document
       .querySelector("#select-criterion .selected")
       .classList.remove("selected");
@@ -43,18 +41,13 @@ const Sorter = () => {
     if (!e.target.classList.contains("option")) return;
     const target = e.target;
 
-    target.classList.toggle('selected');
-    // dispatch({
-    //   action: 'TOGGLE_PLATFORM',
-    //   payload: {
-    //     platform: target.value
-    //   }
-    // })
+    target.classList.toggle("selected");
+    console.log(target.value);
     loadPage({
       page_no: 1,
-      platform: target.value
+      currPlatform: String(target.value),
     });
-  }
+  };
 
   useEffect(() => {
     document.addEventListener("click", (e) => {
@@ -76,7 +69,7 @@ const Sorter = () => {
           </div>
         </div>
         <ul className="options hide" onClick={sortBy}>
-          <li className="option selected" value="">
+          <li className="option selected">
             Popularity
           </li>
           <li className="option" value="-released">
@@ -98,11 +91,39 @@ const Sorter = () => {
             Platform
           </div>
         </div>
-        <ul className="options hide">
-          <li className="option selected">PC</li>
-          <li className="option selected">PlayStation</li>
-          <li className="option selected">Xbox</li>
-          <li className="option selected">Nintendo</li>
+        <ul className="options hide" onClick={togglePlatform}>
+          <li
+            className={
+              platform.find((x) => x === "1") ? "option selected" : "option"
+            }
+            value="1"
+          >
+            PC
+          </li>
+          <li
+            className={
+              platform.find((x) => x === "2") ? "option selected" : "option"
+            }
+            value="2"
+          >
+            PlayStation
+          </li>
+          <li
+            className={
+              platform.find((x) => x === "3") ? "option selected" : "option"
+            }
+            value="3"
+          >
+            Xbox
+          </li>
+          <li
+            className={
+              platform.find((x) => x === "7") ? "option selected" : "option"
+            }
+            value="7"
+          >
+            Nintendo
+          </li>
         </ul>
       </li>
     </ul>

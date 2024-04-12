@@ -17,7 +17,8 @@ export async function getGames({ page_no, genre, query, url, platform, sort }) {
     url ?? `${api_url}?key=${api_key}&page=${page_no}&page_size=${page_size}`;
   if (genre) callurl += `&genres=${genre}`;
   if (query) callurl += `&search=${query}`;
-  if (sort) callurl += `&ordering=${sort}`;
+  if (sort && sort !== '') callurl += `&ordering=${sort}`;
+  if (platform) callurl += `&parent_platforms=${platform.join(",")}`;
 
   const res = await _getData(callurl);
   const data = {
@@ -34,7 +35,7 @@ export async function getGames({ page_no, genre, query, url, platform, sort }) {
         genres: result.genres.map((genre) => genre.slug.match("[A-Za-z]*")[0]),
       };
 
-      result.platforms.forEach((platform) => {
+      result.parent_platforms.forEach((platform) => {
         currData.platforms[platform.platform.slug.match("[A-Za-z]*")[0]] = true;
       });
       return currData;

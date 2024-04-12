@@ -1,4 +1,5 @@
 import { createStore } from "redux";
+import { toggle } from "../utils";
 
 const initialState = {
   currentPage: 1,
@@ -10,7 +11,7 @@ const initialState = {
   isLoading: false,
   currentQuery: "",
   sortQuery: "",
-  platform: "",
+  platform: ["1", "2", "3", "7"],
 };
 
 // changeGenres, nextPage, prevPage, searchQuery
@@ -54,10 +55,7 @@ const ReducerFunction = (state = initialState, action) => {
       };
 
     case "TOGGLE_PLATFORM":
-      return {
-        ...state,
-        platform: action.payload.platform,
-      };
+      return {...state, platform : toggle(state.platform, action.payload.platform)};
 
     default:
       return state;
