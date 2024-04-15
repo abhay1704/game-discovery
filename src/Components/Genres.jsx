@@ -1,6 +1,4 @@
-import React from "react";
 import "./genres.css";
-import { getGames } from "../services";
 
 import action_image from "../assets/action_game.png";
 import adventure_image from "../assets/adventure_games.png";
@@ -12,7 +10,6 @@ import shooting_image from "../assets/shooting_games.png";
 import sports_image from "../assets/sports_game.png";
 import strategy_image from "../assets/strategy_game.png";
 // import free_online_image from "../assets/free_online_games.jpg";
-import { useDispatch } from "react-redux";
 import { useLoadPage } from "./useLoadPage";
 
 const listGenres = [
@@ -31,10 +28,8 @@ const listGenres = [
   { name: "Strategy Games", imageSrc: strategy_image, slug: "strategy" },
 ];
 
-const Genres = () => {
-  const dispatch = useDispatch();
+const Genres = ({ isGenreOpen }) => {
   const loadPage = useLoadPage();
-
 
   const changeGenres = (e) => {
     const genre = e.target.closest("li");
@@ -44,8 +39,11 @@ const Genres = () => {
   };
 
   return (
-    <div className="select-genres">
+    <div
+      className={!isGenreOpen ? "select-genres hide-genre" : "select-genres"}
+    >
       <h2>Genres</h2>
+      <hr />
       <ul id="genres-list" onClick={changeGenres}>
         {listGenres.map((genre, index) => (
           <li key={index} dataname={genre.slug}>

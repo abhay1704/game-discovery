@@ -1,5 +1,7 @@
 #header {
   color: white;
+  width: 100%;
+  overflow: hidden;
 }
 
 .icon {
@@ -19,17 +21,74 @@
   color: var(--gray-dark) !important;
 }
 
-
-#header input{
+#header input {
   padding: 0.5rem;
   padding-left: 3rem;
   width: 100%;
   margin-right: 1rem;
   letter-spacing: 1.5px;
+  min-width: 10rem;
+}
+
+/* input:active {
+} */
+
+#header input:focus-visible{
+  padding: 1.3rem;
+  /* position: absolute; */
+  padding-left: 3rem;
+  width: 15rem;
+  z-index: 15;
+}
+
+.ham {
+  width: 60px;
+  height: 40px;
+  position: relative;
+}
+
+.ham::after,
+.ham::before {
+  content: "";
+  width: 100%;
+  position: absolute;
+  height: 2px;
+  background-color: white;
+  top: 33%;
+  left: 0;
+  transform-origin: center;
+  transition: all 0.5s;
+}
+
+.ham::after {
+  top: 66%;
+}
+
+.open.ham::before {
+  top: 50%;
+  transform: rotate(45deg);
+}
+
+.open.ham::after {
+  top: 50%;
+  transform: rotate(-45deg);
+}
+
+.ham .bich {
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  background-color: white;
+  top: 50%;
+}
+
+.ham.open .bich {
+  opacity: 0;
 }
 
 
+/* @media screen and (max-width: 768px){
+  input{
 
-input:active {
-  padding:5rem;
-}
+  }
+} */

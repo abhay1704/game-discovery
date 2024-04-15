@@ -18,7 +18,6 @@ const Game = ({ name, genres, releaseDate, rating, platforms, image }) => {
     borderRadius: "5px",
     marginRight: "0.5em",
   };
-  console.log(this);
 
   const ref = useRef();
 

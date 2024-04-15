@@ -9,20 +9,19 @@ import {
   InputLeftElement,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
-import { useDispatch } from "react-redux";
 import { useLoadPage } from "./useLoadPage";
 
-const Header = () => {
+const Header = ({toggleGenres}) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const loadPage = useLoadPage();
 
   function focusSearch(f) {
     const svg = document.querySelector("#header svg");
-    if (colorMode == "dark") {
-      if (f == 0) svg.style.color = "#63b3ed";
+    if (colorMode === "dark") {
+      if (f === 0) svg.style.color = "#63b3ed";
       else svg.style.color = "var(--gray-light)";
     } else {
-      if (f == 0) svg.style.color = "green";
+      if (f === 0) svg.style.color = "green";
       else svg.style.color = "grey";
     }
   }
@@ -36,9 +35,14 @@ const Header = () => {
     e.target.value = "";
   }
 
+  const toggleMenu = (e) => {
+    e.target.classList.toggle("open");
+    toggleGenres(isOpengenres => !isOpengenres);
+  }
+
   return (
     <div id="header" className="d-flex flex-row p-3 align-items-center">
-      <img className="icon" src={icon} />
+      <img className="icon" src={icon} alt="Game Bckdg"/>
       <InputGroup size="md" marginInlineEnd="5%" marginInlineStart="3%">
         <InputLeftElement>
           <SearchIcon paddingLeft="10px" fontSize={"1.4rem"} />
@@ -61,10 +65,11 @@ const Header = () => {
           className="me-2"
           colorScheme="green"
           onChange={toggleColorMode}
-          defaultChecked={colorMode === "dark"}
+          {...{ isChecked: (colorMode === "dark") }}
         />{" "}
         <span>Dark Mode</span>
       </div>
+      {window.screen.availWidth<768 && <div className="ham menu" onClick={toggleMenu}><div className="bich"></div></div>}
     </div>
   );
 };
