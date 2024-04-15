@@ -11,7 +11,7 @@ import {
 import { SearchIcon } from "@chakra-ui/icons";
 import { useLoadPage } from "./useLoadPage";
 
-const Header = ({toggleGenres}) => {
+const Header = ({ toggleGenres }) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const loadPage = useLoadPage();
 
@@ -24,6 +24,10 @@ const Header = ({toggleGenres}) => {
       if (f === 0) svg.style.color = "green";
       else svg.style.color = "grey";
     }
+
+    const input = document.querySelector("#header .chakra-input__group");
+    if (f === 0) input.style.width = "60%";
+    else input.style.width = "40%";
   }
 
   function searchQuery(e) {
@@ -37,12 +41,12 @@ const Header = ({toggleGenres}) => {
 
   const toggleMenu = (e) => {
     e.target.classList.toggle("open");
-    toggleGenres(isOpengenres => !isOpengenres);
-  }
+    toggleGenres((isOpengenres) => !isOpengenres);
+  };
 
   return (
     <div id="header" className="d-flex flex-row p-3 align-items-center">
-      <img className="icon" src={icon} alt="Game Bckdg"/>
+      <img className="icon" src={icon} alt="Game Bckdg" />
       <InputGroup size="md" marginInlineEnd="5%" marginInlineStart="3%">
         <InputLeftElement>
           <SearchIcon paddingLeft="10px" fontSize={"1.4rem"} />
@@ -65,11 +69,15 @@ const Header = ({toggleGenres}) => {
           className="me-2"
           colorScheme="green"
           onChange={toggleColorMode}
-          {...{ isChecked: (colorMode === "dark") }}
+          {...{ isChecked: colorMode === "dark" }}
         />{" "}
         <span>Dark Mode</span>
       </div>
-      {window.screen.availWidth<768 && <div className="ham menu" onClick={toggleMenu}><div className="bich"></div></div>}
+      {window.screen.availWidth < 600 && (
+        <div className="ham menu" onClick={toggleMenu}>
+          <div className="bich"></div>
+        </div>
+      )}
     </div>
   );
 };

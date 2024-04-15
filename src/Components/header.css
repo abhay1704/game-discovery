@@ -1,7 +1,10 @@
 #header {
   color: white;
-  width: 100%;
+  min-width: 100%;
   overflow: hidden;
+  position: relative;
+  height: 6rem;
+  padding-top: 20px;
 }
 
 .icon {
@@ -11,10 +14,15 @@
   margin-right: 1rem;
   width: 3rem;
   border-radius: 10px;
+  position: absolute;
+  top: calc(50% - 1.5rem);
+  left: 20px;
 }
 
 .theme-toggler {
-  min-width: 10rem;
+  min-width: fit-content;
+  position: absolute;
+  right: min(calc(60% - 90px), calc(40px + 10px + 40px));
 }
 
 #header input:focus-visible && #header .chakra-icon {
@@ -22,29 +30,50 @@
 }
 
 #header input {
-  padding: 0.5rem;
+  padding: 2rem;
   padding-left: 3rem;
-  width: 100%;
+  /* width: 100%; */
   margin-right: 1rem;
   letter-spacing: 1.5px;
   min-width: 10rem;
+  transition: all 0.5s;
 }
 
-/* input:active {
-} */
-
-#header input:focus-visible{
-  padding: 1.3rem;
-  /* position: absolute; */
-  padding-left: 3rem;
-  width: 15rem;
+#header .css-2nj8kw {
+  position: absolute !important;
+  height: 4rem;
+  top: calc(50% - 2rem);
+  left: 80px;
+  width: calc(40%);
+  align-items: center !important;
   z-index: 15;
 }
 
+.css-j2xror {
+  top: auto !important;
+}
+
+
+.chakra-ui-dark svg {
+  color: var(--gray-light);
+  font-size: 2rem;
+}
+
+.chakra-ui-light svg {
+  color: green;
+  font-size: 2rem;
+}
+
+#header input:focus-visible {
+  padding: 2.5rem;
+  padding-left: 3rem;
+}
+
 .ham {
-  width: 60px;
+  width: 30px;
   height: 40px;
-  position: relative;
+  position: absolute;
+  right: 5%;
 }
 
 .ham::after,
@@ -86,9 +115,8 @@
   opacity: 0;
 }
 
-
-/* @media screen and (max-width: 768px){
-  input{
-
+@media screen and (min-width: 768px) {
+  #header .css-2nj8kw {
+    width: 60% !important;
   }
-} */
+}

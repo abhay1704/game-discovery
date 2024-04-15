@@ -28,7 +28,7 @@ const listGenres = [
   { name: "Strategy Games", imageSrc: strategy_image, slug: "strategy" },
 ];
 
-const Genres = ({ isGenreOpen }) => {
+const Genres = ({ isGenreOpen, toggleGenres }) => {
   const loadPage = useLoadPage();
 
   const changeGenres = (e) => {
@@ -36,6 +36,7 @@ const Genres = ({ isGenreOpen }) => {
     if (!genre) return;
     const genreName = genre.getAttribute("dataname");
     loadPage({ page_no: 1, genre: genreName });
+    if(window.screen.width <= 600) toggleGenres((isOpengenres) => !isOpengenres);
   };
 
   return (

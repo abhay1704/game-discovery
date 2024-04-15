@@ -9,7 +9,7 @@ import { useState } from "react";
 
 function App() {
   const [isGenreOpen, toggleGenres] = useState(
-    window.screen.width > 768 ? true : true
+    window.screen.width > 600 ? true : false
   );
   console.log(isGenreOpen);
 
@@ -18,7 +18,7 @@ function App() {
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       <Header toggleGenres={toggleGenres} />
       <div className="content">
-        <Genres {...{ isGenreOpen }}></Genres>
+        <Genres {...{ isGenreOpen, toggleGenres }}></Genres>
         <Games></Games>
       </div>
     </ChakraProvider>

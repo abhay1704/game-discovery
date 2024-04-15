@@ -9,11 +9,12 @@ h2 {
 .select-genres {
   text-align: left;
   padding-left: 20px;
-  /* flex-grow: 2; */
+  flex-grow: 2;
   max-width: 20rem;
   min-width: 15rem;
   padding-right: 1rem;
   width: 15%;
+  flex-shrink: 2;
 }
 
 #genres-list {
@@ -47,7 +48,7 @@ li img {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .select-genres {
     min-width: 100%;
     margin-top: 20px;
@@ -73,7 +74,7 @@ li img {
       letter-spacing: 1.4px;
     }
 
-    li{
+    li {
       gap: 14px;
     }
   }

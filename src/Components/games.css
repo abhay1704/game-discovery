@@ -1,8 +1,9 @@
 #games {
-  flex-basis: fit-content;
   flex-grow: 5;
-  width: 85%;
+  flex-shrink: 5;
   text-align: left;
+  flex-basis: auto;
+  width: 50%;
 }
 
 #games {
